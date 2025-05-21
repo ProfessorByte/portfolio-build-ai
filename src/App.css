@@ -26,3 +26,21 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* Bento Grid responsive styles */
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto !important;
+    height: auto !important;
+    grid-auto-rows: minmax(90px, auto);
+    gap: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 10px !important;
+  }
+}
