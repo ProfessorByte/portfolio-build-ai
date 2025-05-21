@@ -27,6 +27,17 @@ html {
   scrollbar-width: none; /* Firefox */
 }
 
+/* Ajustes generales para móviles */
+@media (max-width: 480px) {
+  .slide-container {
+    justify-content: center;
+  }
+
+  .slide-footer {
+    padding-bottom: 20px;
+  }
+}
+
 /* Bento Grid responsive styles */
 @media (max-width: 768px) {
   .bento-grid {
@@ -36,11 +47,33 @@ html {
     grid-auto-rows: minmax(90px, auto);
     gap: 10px !important;
   }
+
+  .mobile-title-only .slide-title {
+    margin-bottom: 0 !important;
+    font-size: clamp(2rem, 6vw, 4rem) !important;
+  }
 }
 
 @media (max-width: 480px) {
   .bento-grid {
-    grid-template-columns: 1fr !important;
-    padding: 0 10px !important;
+    display: none !important; /* Ocultar el grid completamente en móviles */
+  }
+
+  .mobile-title-only {
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center;
+    height: 100% !important;
+    padding-top: 0 !important;
+  }
+
+  .mobile-title-only .slide-title {
+    margin-bottom: 0 !important;
+    font-size: clamp(2.2rem, 8vw, 3.5rem) !important;
+  }
+
+  .mobile-accent-line {
+    width: 80% !important;
   }
 }

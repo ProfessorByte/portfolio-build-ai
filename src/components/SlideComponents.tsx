@@ -11,7 +11,9 @@ const breakpoints = {
 };
 
 // Slide container that will be used for all slides
-export const SlideContainer = styled(motion.div)`
+export const SlideContainer = styled(motion.div).attrs({
+  className: "slide-container",
+})`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,11 +27,11 @@ export const SlideContainer = styled(motion.div)`
   padding: ${theme.spacing(2)};
   overflow: hidden;
   box-sizing: border-box;
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     padding: ${theme.spacing(3)};
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     padding: ${theme.spacing(6)};
   }
@@ -91,18 +93,20 @@ export const SlideContent = styled(motion.div)`
   flex-grow: 1;
   width: 100%;
   max-width: 100%;
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     max-width: 900px;
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     max-width: 1200px;
   }
 `;
 
 // Footer component with branding
-export const SlideFooter = styled(motion.footer)`
+export const SlideFooter = styled(motion.footer).attrs({
+  className: "slide-footer",
+})`
   position: absolute;
   bottom: ${theme.spacing(1)};
   left: ${theme.spacing(1)};
@@ -112,14 +116,14 @@ export const SlideFooter = styled(motion.footer)`
   font-size: 0.7rem;
   color: ${theme.colors.onBackground};
   opacity: 0.8;
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     bottom: ${theme.spacing(1.5)};
     left: ${theme.spacing(1.5)};
     gap: ${theme.spacing(0.75)};
     font-size: 0.75rem;
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     bottom: ${theme.spacing(2)};
     left: ${theme.spacing(2)};
@@ -132,11 +136,11 @@ export const SlideFooter = styled(motion.footer)`
 export const LogoImage = styled.img`
   height: 20px;
   width: auto;
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     height: 24px;
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     height: 30px;
   }
@@ -169,17 +173,17 @@ export const NavArrow = styled(motion.button)`
   @media (min-width: ${breakpoints.tablet}) {
     width: 50px;
     height: 50px;
-    
+
     svg {
       width: 28px;
       height: 28px;
     }
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     width: 60px;
     height: 60px;
-    
+
     svg {
       width: 32px;
       height: 32px;
@@ -200,11 +204,11 @@ export const NavArrow = styled(motion.button)`
 
 export const LeftArrow = styled(NavArrow)`
   left: ${theme.spacing(1)};
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     left: ${theme.spacing(2)};
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     left: ${theme.spacing(3)};
   }
@@ -212,11 +216,11 @@ export const LeftArrow = styled(NavArrow)`
 
 export const RightArrow = styled(NavArrow)`
   right: ${theme.spacing(1)};
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     right: ${theme.spacing(2)};
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     right: ${theme.spacing(3)};
   }
@@ -229,12 +233,12 @@ export const SlideProgress = styled.div`
   right: ${theme.spacing(1)};
   display: flex;
   gap: ${theme.spacing(0.5)};
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     bottom: ${theme.spacing(1.5)};
     right: ${theme.spacing(1.5)};
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     bottom: ${theme.spacing(2)};
     right: ${theme.spacing(2)};
@@ -249,12 +253,12 @@ export const ProgressDot = styled.div<{ active: boolean }>`
   background-color: ${(props) =>
     props.active ? theme.colors.primary : theme.colors.elevation4};
   transition: ${theme.transitions.fast};
-  
+
   @media (min-width: ${breakpoints.tablet}) {
     width: 7px;
     height: 7px;
   }
-  
+
   @media (min-width: ${breakpoints.laptop}) {
     width: 8px;
     height: 8px;

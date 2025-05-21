@@ -343,6 +343,7 @@ const AIModelsSlide: React.FC = () => {
           initial="hidden"
           animate="visible"
           variants={contentVariants}
+          className="mobile-title-only"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -356,6 +357,7 @@ const AIModelsSlide: React.FC = () => {
           }}
         >
           <SlideTitle
+            className="slide-title"
             variants={titleVariants}
             initial="hidden"
             animate="visible"
@@ -370,8 +372,9 @@ const AIModelsSlide: React.FC = () => {
               padding: "0 0 10px 0",
             }}
           >
-            ¿Cuál es el mejor modelo para programar?
+            ¿Cuál es el mejor modelo para programar?{" "}
             <motion.div
+              className="mobile-accent-line"
               initial={{ width: "0%" }}
               animate={{ width: "80%" }}
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
