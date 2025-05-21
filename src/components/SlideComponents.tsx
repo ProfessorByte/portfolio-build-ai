@@ -74,9 +74,9 @@ export const NavArrow = styled(motion.button)`
   top: 50%;
   transform: translateY(-50%);
   background-color: ${theme.colors.elevation3};
-  color: ${theme.colors.onBackground};
-  width: 48px;
-  height: 48px;
+  color: ${theme.colors.primary};
+  width: 60px;
+  height: 60px;
   border-radius: ${theme.borderRadius.circle};
   display: flex;
   justify-content: center;
@@ -85,22 +85,31 @@ export const NavArrow = styled(motion.button)`
   box-shadow: ${theme.shadows[2]};
   border: none;
   z-index: ${theme.zIndex.appBar};
+  transition: ${theme.transitions.fast};
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
 
   &:hover {
     background-color: ${theme.colors.elevation4};
+    box-shadow: ${theme.shadows[3]};
+    transform: translateY(-50%) scale(1.05);
   }
 
   &:active {
     background-color: ${theme.colors.elevation2};
+    transform: translateY(-50%) scale(0.95);
   }
 `;
 
 export const LeftArrow = styled(NavArrow)`
-  left: ${theme.spacing(2)};
+  left: ${theme.spacing(3)};
 `;
 
 export const RightArrow = styled(NavArrow)`
-  right: ${theme.spacing(2)};
+  right: ${theme.spacing(3)};
 `;
 
 // Progress indicator for slides

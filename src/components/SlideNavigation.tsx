@@ -8,6 +8,7 @@ import {
   SlideProgress,
   ProgressDot,
 } from "./SlideComponents";
+import { ArrowBackIcon, ArrowForwardIcon } from "./Icons";
 
 interface SlideNavigationProps {
   children: React.ReactNode[];
@@ -106,23 +107,15 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           }
           return null;
         })}
-      </AnimatePresence>
+      </AnimatePresence>{" "}
       {currentIndex > 0 && (
-        <LeftArrow
-          onClick={prevSlide}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          ←
+        <LeftArrow onClick={prevSlide} aria-label="Anterior slide">
+          <ArrowBackIcon />
         </LeftArrow>
       )}
       {currentIndex < slideCount - 1 && (
-        <RightArrow
-          onClick={nextSlide}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          →
+        <RightArrow onClick={nextSlide} aria-label="Siguiente slide">
+          <ArrowForwardIcon />
         </RightArrow>
       )}
       <SlideProgress>
