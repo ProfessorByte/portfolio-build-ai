@@ -52,28 +52,25 @@ const TestSlide: React.FC = () => {
             height: "100%",
             padding: theme.spacing(4),
           }}
-        >
-          <SlideTitle
+        >          <SlideTitle
             variants={titleVariants}
             initial="hidden"
             animate="visible"
             style={{
-              fontSize: "4.5rem",
+              fontSize: "clamp(2rem, 5vw, 4.5rem)",
               color: theme.colors.onBackground,
-              marginBottom: theme.spacing(4),
+              marginBottom: "clamp(16px, 4vh, 32px)",
               textAlign: "center",
             }}
           >
             Slide de prueba
-          </SlideTitle>
-
-          <motion.div
+          </SlideTitle>          <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.7 }}
             style={{
-              width: "200px",
-              height: "200px",
+              width: "clamp(120px, 30vw, 200px)",
+              height: "clamp(120px, 30vw, 200px)",
               borderRadius: theme.borderRadius.circle,
               background: `conic-gradient(${theme.colors.primary}, ${theme.colors.secondary}, ${theme.colors.accent}, ${theme.colors.primary})`,
               display: "flex",
@@ -81,7 +78,7 @@ const TestSlide: React.FC = () => {
               alignItems: "center",
               boxShadow: theme.shadows[4],
               position: "relative",
-              marginTop: theme.spacing(4),
+              marginTop: "clamp(16px, 4vh, 32px)",
             }}
           >
             <motion.div
@@ -100,11 +97,10 @@ const TestSlide: React.FC = () => {
                 opacity: 0.7,
                 filter: "blur(15px)",
               }}
-            />
-            <motion.div
+            />            <motion.div
               style={{
-                width: "160px",
-                height: "160px",
+                width: "calc(100% - 40px)",
+                height: "calc(100% - 40px)",
                 borderRadius: theme.borderRadius.circle,
                 background: theme.colors.elevation2,
                 zIndex: 1,

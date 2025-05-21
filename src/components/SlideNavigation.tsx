@@ -9,6 +9,7 @@ import {
   ProgressDot,
 } from "./SlideComponents";
 import { ArrowBackIcon, ArrowForwardIcon } from "./Icons";
+import { useSwipe } from "../hooks/useSwipe";
 
 interface SlideNavigationProps {
   children: React.ReactNode[];
@@ -24,7 +25,7 @@ interface MotionProps {
   exit?: string;
 }
 
-const SlideContainer = styled.div`
+const SlideContainerWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -87,10 +88,14 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, prevSlide]);
+  }, [nextSlide, prevSlide]);  // Use the swipe hook for touch gestures
+  const { ref } = useSwipe({
+    onSwipeLeft: nextSlide,
+    onSwipeRight: prevSlide
+  }, { threshold: 40 });
+  
   return (
-    <SlideContainer>
-      {" "}
+    <SlideContainerWrapper ref={ref}>
       <AnimatePresence initial={false} mode="wait">
         {React.Children.map(children, (child, index) => {
           // Only render the current slide
@@ -107,7 +112,7 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           }
           return null;
         })}
-      </AnimatePresence>{" "}
+      </AnimatePresence>
       {currentIndex > 0 && (
         <LeftArrow onClick={prevSlide} aria-label="Anterior slide">
           <ArrowBackIcon />
@@ -117,12 +122,11 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
         <RightArrow onClick={nextSlide} aria-label="Siguiente slide">
           <ArrowForwardIcon />
         </RightArrow>
-      )}
-      <SlideProgress>
+      )}      <SlideProgress>
         {Array.from({ length: slideCount }).map((_, index) => (
           <ProgressDot key={index} active={index === currentIndex} />
         ))}
       </SlideProgress>
-    </SlideContainer>
+    </SlideContainerWrapper>
   );
 };
