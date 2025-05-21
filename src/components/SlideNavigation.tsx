@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
+import type { Variants } from "framer-motion";
 import styled from "styled-components";
 import {
   LeftArrow,
@@ -7,11 +8,19 @@ import {
   SlideProgress,
   ProgressDot,
 } from "./SlideComponents";
-import { theme } from "../styles/theme";
 
 interface SlideNavigationProps {
   children: React.ReactNode[];
   initialSlide?: number;
+}
+
+interface MotionProps {
+  key: number;
+  custom?: number;
+  variants?: Variants;
+  initial?: string;
+  animate?: string;
+  exit?: string;
 }
 
 const SlideContainer = styled.div`
@@ -51,20 +60,19 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
   const [currentIndex, setCurrentIndex] = useState(initialSlide);
   const [direction, setDirection] = useState(0);
   const slideCount = React.Children.count(children);
-
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (currentIndex < slideCount - 1) {
       setDirection(1);
       setCurrentIndex((prevIndex) => prevIndex + 1);
     }
-  };
+  }, [currentIndex, slideCount]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (currentIndex > 0) {
       setDirection(-1);
       setCurrentIndex((prevIndex) => prevIndex - 1);
     }
-  };
+  }, [currentIndex]);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -78,27 +86,27 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex, slideCount]);
-
+  }, [nextSlide, prevSlide]);
   return (
     <SlideContainer>
-      <AnimatePresence initial={false} custom={direction}>
+      {" "}
+      <AnimatePresence initial={false} mode="wait">
         {React.Children.map(children, (child, index) => {
           // Only render the current slide
           if (index === currentIndex) {
-            return React.cloneElement(child as React.ReactElement, {
+            const props: MotionProps = {
               key: index,
-              custom: direction,
-              variants: slideVariants,
-              initial: "hidden",
               animate: "visible",
+              initial: "hidden",
               exit: "exit",
-            });
+              variants: slideVariants,
+              custom: direction,
+            };
+            return React.cloneElement(child as React.ReactElement, props);
           }
           return null;
         })}
       </AnimatePresence>
-
       {currentIndex > 0 && (
         <LeftArrow
           onClick={prevSlide}
@@ -108,7 +116,6 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           ←
         </LeftArrow>
       )}
-
       {currentIndex < slideCount - 1 && (
         <RightArrow
           onClick={nextSlide}
@@ -118,7 +125,6 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           →
         </RightArrow>
       )}
-
       <SlideProgress>
         {Array.from({ length: slideCount }).map((_, index) => (
           <ProgressDot key={index} active={index === currentIndex} />

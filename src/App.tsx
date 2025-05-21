@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "./components/Layout.tsx";
 import { SlideNavigation } from "./components/SlideNavigation.tsx";
 import TitleSlide from "./slides/TitleSlide.tsx";
