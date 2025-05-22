@@ -72,7 +72,6 @@ const SWEBenchSlide: React.FC = () => {
           }}
         />
       </SlideTitle>
-
       {/* Efecto de fondo tecnológico */}
       <motion.div
         style={{
@@ -139,7 +138,6 @@ const SWEBenchSlide: React.FC = () => {
           />
         ))}
       </motion.div>
-
       {/* Efecto acrílico/glassmorphism para el fondo */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -156,8 +154,7 @@ const SWEBenchSlide: React.FC = () => {
           zIndex: 1,
         }}
       />
-
-      {/* Contenido principal */}
+      {/* Contenido principal con layout modificado */}{" "}
       <SlideContent
         variants={contentVariants}
         initial="hidden"
@@ -168,118 +165,122 @@ const SWEBenchSlide: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-around", // Distribución equitativa
           width: "100%",
           padding: theme.spacing(2),
           flex: 1,
-          marginTop: "-24px", // Ajuste para centrar mejor verticalmente
+          height: "100%", // Ocupar toda la altura disponible
+          marginTop: "-20px", // Ajuste para centrar mejor verticalmente
         }}
       >
-        {/* Contenedor para la imagen con estilo similar al iframe */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            transition: { duration: 0.8, delay: 0.5 },
-          }}
+        {" "}
+        <div
           style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             width: "100%",
-            maxWidth: "900px",
-            height: "auto",
-            aspectRatio: "16/10",
-            borderRadius: theme.borderRadius.medium,
-            overflow: "hidden",
-            boxShadow: theme.shadows[3],
-            border: `1px solid ${theme.colors.elevationBorder}`,
-            position: "relative",
-            marginBottom: theme.spacing(3),
-            backgroundColor: "#121212",
+            maxWidth: "800px",
+            gap: theme.spacing(2),
+            justifyContent: "center",
+            height: "auto", // Ajuste para no forzar altura completa
+            paddingBottom: "clamp(60px, 12vh, 100px)", // Espacio para el footer
+            margin: "0 auto", // Centrar horizontalmente
           }}
         >
-          {/* Borde luminoso decorativo */}
+          {/* Contenedor para la imagen con estilo similar al iframe */}{" "}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1.5 }}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 2,
-              borderRadius: theme.borderRadius.medium,
-              boxShadow: `0 0 15px ${theme.colors.primary}40, inset 0 0 10px ${theme.colors.primary}20`,
-              pointerEvents: "none",
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              transition: { duration: 0.8, delay: 0.5 },
             }}
-          />
-
-          <motion.img
-            src="/img/swe-verified-2025-05-anthropic.png"
-            alt="SWE-bench Verified Results"
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
               width: "100%",
-              height: "100%",
-              objectFit: "contain", // Cambiado a contain para mejor visualización
-              objectPosition: "center center", // Centrado completo
-              zIndex: 1,
-              padding: theme.spacing(2.5), // Más padding para mejorar visibilidad
-            }}
-          />
-        </motion.div>
-      </SlideContent>
-
-      {/* Texto descriptivo del benchmark con más separación en dispositivos móviles */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.8 }}
-        className="mobile-descriptive-text"
-        style={{
-          position: "absolute",
-          bottom: "clamp(50px, 12vh, 100px)", // Mayor separación adaptativa
-          width: "calc(100% - 48px)", // Más margen lateral
-          display: "flex",
-          justifyContent: "center",
-          left: "24px", // Margen lateral aumentado
-          right: "24px",
-          zIndex: 10,
-        }}
-      >
-        <motion.div
-          style={{
-            padding: theme.spacing(2), // Mayor padding para mejorar legibilidad
-            borderRadius: theme.borderRadius.small,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            backdropFilter: "blur(10px)",
-            boxShadow: theme.shadows[1],
-            border: `1px solid ${theme.colors.elevationBorder}`,
-            maxWidth: "900px",
-            width: "100%", // Para asegurar que ocupe el ancho completo
-          }}
-        >
-          <motion.p
-            style={{
-              fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)", // Tamaño de texto adaptativo
-              textAlign: "center",
-              color: theme.colors.onBackground,
-              margin: 0,
-              fontWeight: 500,
-              letterSpacing: "0.01em",
-              textShadow: "0 1px 1px rgba(0, 0, 0, 0.3)",
-              lineHeight: 1.5,
+              maxWidth: "800px",
+              height: "auto",
+              aspectRatio: "16/10",
+              borderRadius: theme.borderRadius.medium,
+              overflow: "hidden",
+              boxShadow: theme.shadows[3],
+              border: `1px solid ${theme.colors.elevationBorder}`,
+              position: "relative",
+              backgroundColor: "#121212",
+              flex: "0 0 auto", // No crecer ni encogerse
+              maxHeight: "50vh", // Reducir altura máxima
             }}
           >
-            SWE-bench Verified es un benchmark que evalúa el rendimiento de
-            distintos modelos en tareas reales de ingeniería de software a un
-            nivel agéntico
-          </motion.p>
-        </motion.div>
-      </motion.div>
+            {/* Borde luminoso decorativo */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 1.5 }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 2,
+                borderRadius: theme.borderRadius.medium,
+                boxShadow: `0 0 15px ${theme.colors.primary}40, inset 0 0 10px ${theme.colors.primary}20`,
+                pointerEvents: "none",
+              }}
+            />
+
+            <motion.img
+              src="/img/swe-verified-2025-05-anthropic.png"
+              alt="SWE-bench Verified Results"
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "contain", // Cambiado a contain para mejor visualización
+                objectPosition: "center center", // Centrado completo
+                zIndex: 1,
+                padding: theme.spacing(1.5), // Padding reducido para imagen más grande
+              }}
+            />
+          </motion.div>
+          {/* Texto descriptivo del benchmark DEBAJO de la imagen */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            style={{
+              padding: theme.spacing(2),
+              borderRadius: theme.borderRadius.small,
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              backdropFilter: "blur(10px)",
+              boxShadow: theme.shadows[1],
+              border: `1px solid ${theme.colors.elevationBorder}`,
+              width: "100%",
+              maxWidth: "900px",
+              marginTop: theme.spacing(2), // Espacio entre imagen y texto
+            }}
+          >
+            <motion.p
+              style={{
+                fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)", // Tamaño de texto adaptativo
+                textAlign: "center",
+                color: theme.colors.onBackground,
+                margin: 0,
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+                textShadow: "0 1px 1px rgba(0, 0, 0, 0.3)",
+                lineHeight: 1.5,
+              }}
+            >
+              SWE-bench Verified es un benchmark que evalúa el rendimiento de
+              distintos modelos en tareas reales de ingeniería de software a un
+              nivel agéntico
+            </motion.p>
+          </motion.div>
+        </div>
+      </SlideContent>
     </SlideContainer>
   );
 };
