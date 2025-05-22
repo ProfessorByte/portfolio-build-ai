@@ -227,12 +227,13 @@ export const RightArrow = styled(NavArrow)`
 `;
 
 // Progress indicator for slides
-export const SlideProgress = styled.div`
-  position: absolute;
+export const SlideProgress = styled(motion.div)`
+  position: fixed;
   bottom: ${theme.spacing(1)};
   right: ${theme.spacing(1)};
   display: flex;
   gap: ${theme.spacing(0.5)};
+  z-index: 101;
 
   @media (min-width: ${breakpoints.tablet}) {
     bottom: ${theme.spacing(1.5)};
@@ -244,23 +245,35 @@ export const SlideProgress = styled.div`
     right: ${theme.spacing(2)};
     gap: ${theme.spacing(0.75)};
   }
+  
+  @media (max-width: 480px) {
+    bottom: ${theme.spacing(3)};
+    right: ${theme.spacing(1)};
+  }
 `;
 
 export const ProgressDot = styled.div<{ active: boolean }>`
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: ${theme.borderRadius.circle};
   background-color: ${(props) =>
     props.active ? theme.colors.primary : theme.colors.elevation4};
   transition: ${theme.transitions.fast};
+  margin: 0 2px;
+  box-shadow: ${(props) =>
+    props.active ? `0 0 8px ${theme.colors.primary}` : 'none'};
+  
+  &:hover {
+    transform: scale(1.2);
+  }
 
   @media (min-width: ${breakpoints.tablet}) {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
   }
 
   @media (min-width: ${breakpoints.laptop}) {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 `;

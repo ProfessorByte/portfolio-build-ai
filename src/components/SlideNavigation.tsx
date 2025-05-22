@@ -126,19 +126,28 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
         <RightArrow onClick={nextSlide} aria-label="Siguiente slide">
           <ArrowForwardIcon />
         </RightArrow>
-      )}{" "}
-      <SlideProgress
+      )}{" "}      <SlideProgress
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
         style={{
+          position: "absolute",
           bottom: "10px",
           right: "10px",
+          zIndex: 101, // Mayor que el z-index del footer (100)
+          background: "rgba(0,0,0,0.2)",
+          backdropFilter: "blur(5px)",
+          padding: "4px 8px",
+          borderRadius: "4px",
+          display: "flex",
+          justifyContent: "center"
         }}
       >
         {Array.from({ length: slideCount }).map((_, index) => (
           <ProgressDot key={index} active={index === currentIndex} />
         ))}
       </SlideProgress>
-      {/* Global Footer que aparecerá en todas las diapositivas */}
-      <SlideFooter
+      {/* Global Footer que aparecerá en todas las diapositivas */}      <SlideFooter
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.8 }}
         transition={{ duration: 0.5, delay: 0.5 }}
@@ -151,6 +160,7 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           backdropFilter: "blur(5px)",
           padding: "4px 8px",
           borderRadius: "4px",
+          maxWidth: "calc(100% - 100px)", // Evitar que se solape con los indicadores
         }}
       >
         <LogoImage src="/PablouxLogo.png" alt="Pabloux Logo" />
