@@ -53,7 +53,9 @@ const TitleSlide: React.FC = () => {
             height: "100%",
             padding: theme.spacing(4),
           }}
-        >          <SlideTitle
+        >
+          {" "}
+          <SlideTitle
             variants={titleVariants}
             initial="hidden"
             animate="visible"
@@ -65,12 +67,17 @@ const TitleSlide: React.FC = () => {
               marginBottom: "clamp(16px, 4vh, 32px)",
               textAlign: "center",
               lineHeight: 1.2,
+              zIndex: 10,
+              fontWeight: 800,
+              filter: "brightness(1.2) contrast(1.1)",
+              textShadow: `0 0 15px ${theme.colors.primary}80`,
             }}
           >
             Potencia Tu Marca Personal con IA:
             <br />
             Crea un Portafolio de Otro Nivel
-          </SlideTitle>          <motion.div
+          </SlideTitle>{" "}
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}

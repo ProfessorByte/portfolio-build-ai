@@ -199,6 +199,7 @@ const WebDevArenaSlide: React.FC = () => {
             overflow: "hidden",
           }}
         >
+          {" "}
           <SlideTitle
             variants={titleVariants}
             initial="hidden"
@@ -212,6 +213,10 @@ const WebDevArenaSlide: React.FC = () => {
               WebkitTextFillColor: "transparent",
               position: "relative",
               padding: "0 0 10px 0",
+              zIndex: 10,
+              fontWeight: 800,
+              filter: "brightness(1.2) contrast(1.1)",
+              textShadow: `0 0 15px ${theme.colors.primary}80`,
             }}
           >
             WebDev Arena: Comparativa de Modelos
@@ -226,10 +231,11 @@ const WebDevArenaSlide: React.FC = () => {
                 height: "4px",
                 background: `linear-gradient(90deg, ${theme.colors.primary}, ${theme.colors.accent})`,
                 borderRadius: "2px",
+                boxShadow: `0 0 10px ${theme.colors.primary}, 0 0 20px ${theme.colors.primary}40`,
+                filter: "brightness(1.1)",
               }}
             />
           </SlideTitle>
-
           {/* Iframe container */}
           <motion.div
             variants={iframeVariants}
