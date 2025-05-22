@@ -17,6 +17,23 @@ const Main = styled.main`
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  // Preload font to avoid FOUT (Flash of Unstyled Text) during transitions
+  React.useEffect(() => {
+    const fontPreloader = new FontFace(
+      "Google Sans",
+      `url('/fonts/GoogleSans-Regular.woff2') format('woff2')`
+    );
+
+    fontPreloader
+      .load()
+      .then((loadedFont) => {
+        document.fonts.add(loadedFont);
+      })
+      .catch((err) => {
+        console.error("Font loading error:", err);
+      });
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />

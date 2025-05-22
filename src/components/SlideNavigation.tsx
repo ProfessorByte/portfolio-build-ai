@@ -41,16 +41,16 @@ const slideVariants = {
     x: 0,
     opacity: 1,
     transition: {
-      x: { type: "spring", stiffness: 300, damping: 30 },
-      opacity: { duration: 0.3 },
+      x: { type: "spring", stiffness: 250, damping: 25 },
+      opacity: { duration: 0.4, ease: "easeInOut" },
     },
   },
   exit: (direction: number) => ({
     x: direction > 0 ? "-100%" : "100%",
     opacity: 0,
     transition: {
-      x: { type: "spring", stiffness: 300, damping: 30 },
-      opacity: { duration: 0.3 },
+      x: { type: "spring", stiffness: 250, damping: 25 },
+      opacity: { duration: 0.3, ease: "easeIn" },
     },
   }),
 };
@@ -88,15 +88,17 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, prevSlide]);  // Use the swipe hook for touch gestures
-  const { ref } = useSwipe({
-    onSwipeLeft: nextSlide,
-    onSwipeRight: prevSlide
-  }, { threshold: 40 });
-  
+  }, [nextSlide, prevSlide]); // Use the swipe hook for touch gestures
+  const { ref } = useSwipe(
+    {
+      onSwipeLeft: nextSlide,
+      onSwipeRight: prevSlide,
+    },
+    { threshold: 40 }
+  );
   return (
     <SlideContainerWrapper ref={ref}>
-      <AnimatePresence initial={false} mode="wait">
+      <AnimatePresence initial={false} mode="sync">
         {React.Children.map(children, (child, index) => {
           // Only render the current slide
           if (index === currentIndex) {
@@ -122,7 +124,8 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
         <RightArrow onClick={nextSlide} aria-label="Siguiente slide">
           <ArrowForwardIcon />
         </RightArrow>
-      )}      <SlideProgress>
+      )}{" "}
+      <SlideProgress>
         {Array.from({ length: slideCount }).map((_, index) => (
           <ProgressDot key={index} active={index === currentIndex} />
         ))}

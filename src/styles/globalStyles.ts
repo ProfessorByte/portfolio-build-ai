@@ -1,13 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
 
-export const GlobalStyles = createGlobalStyle`
-  @font-face {
+export const GlobalStyles = createGlobalStyle`  @font-face {
     font-family: 'Google Sans';
-    src: url('/src/fonts/GoogleSans-Regular.woff2') format('woff2');
+    src: url('/fonts/GoogleSans-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: fallback;
   }
 
   * {
