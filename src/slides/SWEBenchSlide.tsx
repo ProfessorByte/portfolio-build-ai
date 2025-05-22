@@ -174,13 +174,12 @@ const SWEBenchSlide: React.FC = () => {
         }}
       >
         {" "}
-        <div
-          style={{
+        <div          style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            width: "100%",
-            maxWidth: "800px",
+            width: "auto", // Ancho automático en lugar de 100%
+            maxWidth: "90%", // Limitar al 90% del contenedor
             gap: theme.spacing(2),
             justifyContent: "center",
             height: "auto", // Ajuste para no forzar altura completa
@@ -195,10 +194,9 @@ const SWEBenchSlide: React.FC = () => {
               opacity: 1,
               scale: 1,
               transition: { duration: 0.8, delay: 0.5 },
-            }}
-            style={{
-              width: "100%",
-              maxWidth: "800px",
+            }}            style={{
+              width: "600px", // Ancho fijo en lugar de 100%
+              maxWidth: "90%", // Nunca más del 90% del contenedor
               height: "auto",
               aspectRatio: "16/10",
               borderRadius: theme.borderRadius.medium,
@@ -249,16 +247,15 @@ const SWEBenchSlide: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            style={{
+            transition={{ delay: 0.9, duration: 0.8 }}            style={{
               padding: theme.spacing(2),
               borderRadius: theme.borderRadius.small,
               backgroundColor: "rgba(0, 0, 0, 0.5)",
               backdropFilter: "blur(10px)",
               boxShadow: theme.shadows[1],
               border: `1px solid ${theme.colors.elevationBorder}`,
-              width: "100%",
-              maxWidth: "900px",
+              width: "600px", // Ancho fijo igual que el contenedor de la imagen
+              maxWidth: "90%", // Nunca más del 90% del contenedor
               marginTop: theme.spacing(2), // Espacio entre imagen y texto
             }}
           >
