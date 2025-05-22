@@ -6,6 +6,7 @@ import {
 } from "../components/SlideComponents";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
+import { isMobile, isTablet } from "react-device-detect";
 
 // Animation variants for elements
 const titleVariants = {
@@ -179,11 +180,11 @@ const SWEBenchSlide: React.FC = () => {
             flexDirection: "column",
             alignItems: "center",
             width: "auto", // Ancho automático en lugar de 100%
-            maxWidth: "90%", // Limitar al 90% del contenedor
-            gap: theme.spacing(2),
+            maxWidth: isMobile ? "95%" : "98%", // Mayor espacio en desktop
+            gap: isMobile ? theme.spacing(2) : theme.spacing(3), // Mayor espaciado en desktop
             justifyContent: "center",
             height: "auto", // Ajuste para no forzar altura completa
-            paddingBottom: "clamp(60px, 12vh, 100px)", // Espacio para el footer
+            paddingBottom: isMobile ? "clamp(60px, 12vh, 100px)" : "clamp(80px, 15vh, 130px)", // Más espacio para el footer en desktop
             margin: "0 auto", // Centrar horizontalmente
           }}
         >
@@ -195,8 +196,8 @@ const SWEBenchSlide: React.FC = () => {
               scale: 1,
               transition: { duration: 0.8, delay: 0.5 },
             }}            style={{
-              width: "600px", // Ancho fijo en lugar de 100%
-              maxWidth: "90%", // Nunca más del 90% del contenedor
+              width: isMobile || isTablet ? "600px" : "800px", // Mayor ancho en desktop
+              maxWidth: isMobile ? "90%" : "95%", // Mayor ancho máximo en desktop
               height: "auto",
               aspectRatio: "16/10",
               borderRadius: theme.borderRadius.medium,
@@ -206,7 +207,7 @@ const SWEBenchSlide: React.FC = () => {
               position: "relative",
               backgroundColor: "#121212",
               flex: "0 0 auto", // No crecer ni encogerse
-              maxHeight: "50vh", // Reducir altura máxima
+              maxHeight: isMobile ? "50vh" : "65vh", // Mayor altura máxima en desktop
             }}
           >
             {/* Borde luminoso decorativo */}
@@ -239,7 +240,7 @@ const SWEBenchSlide: React.FC = () => {
                 objectFit: "contain", // Cambiado a contain para mejor visualización
                 objectPosition: "center center", // Centrado completo
                 zIndex: 1,
-                padding: theme.spacing(1.5), // Padding reducido para imagen más grande
+                padding: isMobile ? theme.spacing(1.5) : theme.spacing(2.5), // Padding adaptativo según dispositivo
               }}
             />
           </motion.div>
@@ -248,15 +249,15 @@ const SWEBenchSlide: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}            style={{
-              padding: theme.spacing(2),
+              padding: isMobile ? theme.spacing(2) : theme.spacing(2.5),
               borderRadius: theme.borderRadius.small,
               backgroundColor: "rgba(0, 0, 0, 0.5)",
               backdropFilter: "blur(10px)",
               boxShadow: theme.shadows[1],
               border: `1px solid ${theme.colors.elevationBorder}`,
-              width: "600px", // Ancho fijo igual que el contenedor de la imagen
-              maxWidth: "90%", // Nunca más del 90% del contenedor
-              marginTop: theme.spacing(2), // Espacio entre imagen y texto
+              width: isMobile || isTablet ? "600px" : "800px", // Mayor ancho en desktop
+              maxWidth: isMobile ? "90%" : "95%", // Mayor ancho máximo en desktop
+              marginTop: isMobile ? theme.spacing(2) : theme.spacing(2.5), // Espacio entre imagen y texto
             }}
           >
             <motion.p
