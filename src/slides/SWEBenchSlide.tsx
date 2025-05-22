@@ -3,7 +3,6 @@ import {
   SlideContainer,
   SlideTitle,
   SlideContent,
-  SlideFooter,
 } from "../components/SlideComponents";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
@@ -30,19 +29,6 @@ const contentVariants = {
       duration: 1.2,
       ease: "easeOut",
       delay: 0.5,
-    },
-  },
-};
-
-const footerVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-      delay: 0.7,
     },
   },
 };
@@ -241,13 +227,14 @@ const SWEBenchSlide: React.FC = () => {
           />
         </motion.div>
       </SlideContent>{" "}
-      <SlideFooter
-        variants={footerVariants}
-        initial="hidden"
-        animate="visible"
+      {/* Texto descriptivo del benchmark */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.7, duration: 0.8 }}
         style={{
           position: "absolute",
-          bottom: theme.spacing(2),
+          bottom: theme.spacing(8),
           width: "100%",
           display: "flex",
           justifyContent: "center",
@@ -283,7 +270,8 @@ const SWEBenchSlide: React.FC = () => {
             nivel agéntico
           </motion.p>
         </motion.div>
-      </SlideFooter>
+      </motion.div>{" "}
+      {/* No necesitamos un footer local, ya que tenemos uno global */}
     </SlideContainer>
   );
 };

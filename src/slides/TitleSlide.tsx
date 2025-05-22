@@ -3,8 +3,6 @@ import {
   SlideContainer,
   SlideTitle,
   SlideContent,
-  SlideFooter,
-  LogoImage,
 } from "../components/SlideComponents";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
@@ -94,10 +92,6 @@ const TitleSlide: React.FC = () => {
           />
         </motion.div>
       </SlideContent>
-      <SlideFooter>
-        <LogoImage src="/PablouxLogo.png" alt="Pabloux Logo" />
-        <span>Powered by Pabloux Darkmind</span>
-      </SlideFooter>
     </SlideContainer>
   );
 };

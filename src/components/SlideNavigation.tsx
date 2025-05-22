@@ -7,6 +7,8 @@ import {
   RightArrow,
   SlideProgress,
   ProgressDot,
+  SlideFooter,
+  LogoImage,
 } from "./SlideComponents";
 import { ArrowBackIcon, ArrowForwardIcon } from "./Icons";
 import { useSwipe } from "../hooks/useSwipe";
@@ -125,11 +127,35 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           <ArrowForwardIcon />
         </RightArrow>
       )}{" "}
-      <SlideProgress>
+      <SlideProgress
+        style={{
+          bottom: "10px",
+          right: "10px",
+        }}
+      >
         {Array.from({ length: slideCount }).map((_, index) => (
           <ProgressDot key={index} active={index === currentIndex} />
         ))}
       </SlideProgress>
+      {/* Global Footer que aparecerá en todas las diapositivas */}
+      <SlideFooter
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          left: "10px",
+          zIndex: 100,
+          background: "rgba(0,0,0,0.2)",
+          backdropFilter: "blur(5px)",
+          padding: "4px 8px",
+          borderRadius: "4px",
+        }}
+      >
+        <LogoImage src="/PablouxLogo.png" alt="Pabloux Logo" />
+        <span>Powered by Pabloux Darkmind</span>
+      </SlideFooter>
     </SlideContainerWrapper>
   );
 };
