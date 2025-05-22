@@ -36,7 +36,6 @@ const contentVariants = {
 const SWEBenchSlide: React.FC = () => {
   return (
     <SlideContainer>
-      {" "}
       <SlideTitle
         variants={titleVariants}
         initial="hidden"
@@ -56,7 +55,7 @@ const SWEBenchSlide: React.FC = () => {
           textShadow: `0 0 15px ${theme.colors.primary}80`,
         }}
       >
-        Resultados en SWE-bench Verified{" "}
+        Resultados en SWE-bench Verified
         <motion.div
           initial={{ width: "0%" }}
           animate={{ width: "80%" }}
@@ -73,6 +72,7 @@ const SWEBenchSlide: React.FC = () => {
           }}
         />
       </SlideTitle>
+
       {/* Efecto de fondo tecnológico */}
       <motion.div
         style={{
@@ -138,7 +138,8 @@ const SWEBenchSlide: React.FC = () => {
             }}
           />
         ))}
-      </motion.div>{" "}
+      </motion.div>
+
       {/* Efecto acrílico/glassmorphism para el fondo */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -155,6 +156,8 @@ const SWEBenchSlide: React.FC = () => {
           zIndex: 1,
         }}
       />
+
+      {/* Contenido principal */}
       <SlideContent
         variants={contentVariants}
         initial="hidden"
@@ -168,9 +171,11 @@ const SWEBenchSlide: React.FC = () => {
           justifyContent: "center",
           width: "100%",
           padding: theme.spacing(2),
+          flex: 1,
+          marginTop: "-24px", // Ajuste para centrar mejor verticalmente
         }}
       >
-        {/* Container for image with same styling as iframe container */}{" "}
+        {/* Contenedor para la imagen con estilo similar al iframe */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{
@@ -219,50 +224,54 @@ const SWEBenchSlide: React.FC = () => {
               left: 0,
               width: "100%",
               height: "100%",
-              objectFit: "cover",
-              objectPosition: "center top",
+              objectFit: "contain", // Cambiado a contain para mejor visualización
+              objectPosition: "center center", // Centrado completo
               zIndex: 1,
-              padding: theme.spacing(2),
+              padding: theme.spacing(2.5), // Más padding para mejorar visibilidad
             }}
           />
         </motion.div>
-      </SlideContent>{" "}
-      {/* Texto descriptivo del benchmark */}
+      </SlideContent>
+
+      {/* Texto descriptivo del benchmark con más separación en dispositivos móviles */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.8 }}
+        className="mobile-descriptive-text"
         style={{
           position: "absolute",
-          bottom: theme.spacing(8),
-          width: "100%",
+          bottom: "clamp(50px, 12vh, 100px)", // Mayor separación adaptativa
+          width: "calc(100% - 48px)", // Más margen lateral
           display: "flex",
           justifyContent: "center",
-          left: 0,
-          right: 0,
+          left: "24px", // Margen lateral aumentado
+          right: "24px",
           zIndex: 10,
         }}
       >
         <motion.div
           style={{
-            padding: theme.spacing(1.5),
+            padding: theme.spacing(2), // Mayor padding para mejorar legibilidad
             borderRadius: theme.borderRadius.small,
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             backdropFilter: "blur(10px)",
             boxShadow: theme.shadows[1],
             border: `1px solid ${theme.colors.elevationBorder}`,
             maxWidth: "900px",
+            width: "100%", // Para asegurar que ocupe el ancho completo
           }}
         >
           <motion.p
             style={{
-              fontSize: "1rem",
+              fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)", // Tamaño de texto adaptativo
               textAlign: "center",
               color: theme.colors.onBackground,
               margin: 0,
               fontWeight: 500,
               letterSpacing: "0.01em",
               textShadow: "0 1px 1px rgba(0, 0, 0, 0.3)",
+              lineHeight: 1.5,
             }}
           >
             SWE-bench Verified es un benchmark que evalúa el rendimiento de
@@ -270,8 +279,7 @@ const SWEBenchSlide: React.FC = () => {
             nivel agéntico
           </motion.p>
         </motion.div>
-      </motion.div>{" "}
-      {/* No necesitamos un footer local, ya que tenemos uno global */}
+      </motion.div>
     </SlideContainer>
   );
 };
