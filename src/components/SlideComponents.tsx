@@ -245,7 +245,7 @@ export const SlideProgress = styled(motion.div)`
     right: ${theme.spacing(2)};
     gap: ${theme.spacing(0.75)};
   }
-  
+
   @media (max-width: 480px) {
     bottom: ${theme.spacing(3)};
     right: ${theme.spacing(1)};
@@ -261,8 +261,8 @@ export const ProgressDot = styled.div<{ active: boolean }>`
   transition: ${theme.transitions.fast};
   margin: 0 2px;
   box-shadow: ${(props) =>
-    props.active ? `0 0 8px ${theme.colors.primary}` : 'none'};
-  
+    props.active ? `0 0 8px ${theme.colors.primary}` : "none"};
+
   &:hover {
     transform: scale(1.2);
   }

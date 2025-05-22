@@ -126,7 +126,8 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
         <RightArrow onClick={nextSlide} aria-label="Siguiente slide">
           <ArrowForwardIcon />
         </RightArrow>
-      )}{" "}      <SlideProgress
+      )}{" "}
+      <SlideProgress
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
@@ -140,14 +141,15 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           padding: "4px 8px",
           borderRadius: "4px",
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         {Array.from({ length: slideCount }).map((_, index) => (
           <ProgressDot key={index} active={index === currentIndex} />
         ))}
       </SlideProgress>
-      {/* Global Footer que aparecerá en todas las diapositivas */}      <SlideFooter
+      {/* Global Footer que aparecerá en todas las diapositivas */}{" "}
+      <SlideFooter
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.8 }}
         transition={{ duration: 0.5, delay: 0.5 }}
