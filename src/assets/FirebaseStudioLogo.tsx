@@ -4,7 +4,7 @@ interface FirebaseStudioIconProps extends SVGProps<SVGSVGElement> {
   width?: number;
 }
 
-export const FirebaseStudioIcon = ({
+export const FirebaseStudioLogo = ({
   width = 322,
   ...props
 }: FirebaseStudioIconProps) => {
