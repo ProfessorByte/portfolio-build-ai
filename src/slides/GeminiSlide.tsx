@@ -205,6 +205,7 @@ const GeminiSlide: React.FC = () => {
     <SlideContainer>
       <TechBackgroundEffect />
       <SlideContent>
+        {" "}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -213,25 +214,26 @@ const GeminiSlide: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "flex-start",
+            justifyContent: isMobile ? "center" : "flex-start",
             width: "100%",
             height: "100%",
-            padding: theme.spacing(4),
+            padding: isMobile ? theme.spacing(2) : theme.spacing(4),
             zIndex: 1,
             position: "relative",
             overflow: "hidden",
           }}
         >
+          {" "}
           <SlideTitle
             variants={titleVariants}
             initial="hidden"
             animate="visible"
             style={{
-              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontSize: isMobile ? "1.8rem" : "clamp(2rem, 5vw, 3.5rem)",
               background: `linear-gradient(135deg, #4285F4 15%, #34A853 40%, #FBBC05 65%, #EA4335 85%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              marginBottom: "clamp(16px, 4vh, 32px)",
+              marginBottom: isMobile ? "16px" : "clamp(16px, 4vh, 32px)",
               textAlign: "center",
               lineHeight: 1.2,
               fontWeight: 700,
@@ -239,61 +241,60 @@ const GeminiSlide: React.FC = () => {
           >
             Gemini 2.5 Pro I/O Edition
           </SlideTitle>
-
-          <motion.div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "clamp(20px, 5vh, 40px)",
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <motion.img
-              src="/ai-logos/gemini.png"
-              alt="Gemini Logo"
+          {!isMobile && (
+            <motion.div
               style={{
-                height: isMobile ? "60px" : "80px",
-                objectFit: "contain",
-                marginRight: "16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "clamp(20px, 5vh, 40px)",
               }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-            />
-            <motion.h2
-              style={{
-                fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
-                color: theme.colors.onBackground,
-                margin: 0,
-                padding: 0,
-                fontWeight: 400,
-                textAlign: "center",
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.9 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
             >
-              La nueva era de la Ingeniería
-              <br />
-              de Software Agéntica
-            </motion.h2>
-          </motion.div>
-
+              <motion.img
+                src="/ai-logos/gemini.png"
+                alt="Gemini Logo"
+                style={{
+                  height: "80px",
+                  objectFit: "contain",
+                  marginRight: "16px",
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              />
+              <motion.h2
+                style={{
+                  fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
+                  color: theme.colors.onBackground,
+                  margin: 0,
+                  padding: 0,
+                  fontWeight: 400,
+                  textAlign: "center",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.9 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              >
+                La nueva era de la Ingeniería
+                <br />
+                de Software Agéntica
+              </motion.h2>
+            </motion.div>
+          )}{" "}
           <motion.div
             style={{
               display: "grid",
               gridTemplateColumns: isMobile
-                ? "1fr"
+                ? "repeat(2, 1fr)"
                 : "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "clamp(12px, 2vw, 20px)",
+              gap: isMobile ? "8px" : "clamp(12px, 2vw, 20px)",
               width: "100%",
               maxWidth: "1200px",
-              overflow: "auto",
-              maxHeight: isMobile ? "calc(100% - 200px)" : "calc(100% - 240px)",
-              padding: "12px",
+              overflow: "visible",
+              padding: isMobile ? "8px" : "12px",
               borderRadius: theme.borderRadius.medium,
               backgroundColor: "rgba(30, 30, 30, 0.6)",
               backdropFilter: "blur(5px)",
@@ -314,20 +315,20 @@ const GeminiSlide: React.FC = () => {
                 style={{
                   backgroundColor: "rgba(40, 40, 40, 0.5)",
                   borderRadius: theme.borderRadius.medium,
-                  padding: "16px",
+                  padding: isMobile ? "8px" : "16px",
                   display: "flex",
-                  alignItems: "flex-start",
+                  alignItems: isMobile ? "center" : "flex-start",
                   border: `1px solid ${feature.color}30`,
                   boxShadow: `0 0 15px ${feature.color}10`,
                 }}
               >
                 <div
                   style={{
-                    fontSize: "24px",
-                    marginRight: "12px",
+                    fontSize: isMobile ? "18px" : "24px",
+                    marginRight: isMobile ? "8px" : "12px",
                     backgroundColor: `${feature.color}20`,
-                    width: "40px",
-                    height: "40px",
+                    width: isMobile ? "30px" : "40px",
+                    height: isMobile ? "30px" : "40px",
                     borderRadius: "50%",
                     display: "flex",
                     alignItems: "center",
@@ -340,42 +341,45 @@ const GeminiSlide: React.FC = () => {
                 <div>
                   <h3
                     style={{
-                      margin: "0 0 6px 0",
-                      fontSize: "clamp(1rem, 2vw, 1.2rem)",
+                      margin: isMobile ? "0" : "0 0 6px 0",
+                      fontSize: isMobile
+                        ? "0.9rem"
+                        : "clamp(1rem, 2vw, 1.2rem)",
                       color: feature.color,
                       fontWeight: 600,
                     }}
                   >
                     {feature.title}
                   </h3>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)",
-                      color: "rgba(255,255,255,0.8)",
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {feature.description}
-                  </p>
+                  {!isMobile && (
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: "clamp(0.8rem, 1.5vw, 0.95rem)",
+                        color: "rgba(255,255,255,0.8)",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {feature.description}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-
+          </motion.div>{" "}
           {/* Google-styled link */}
           <motion.a
             href="https://ai.google.dev/"
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              marginTop: "clamp(20px, 3vh, 30px)",
-              padding: "8px 20px",
+              marginTop: isMobile ? "12px" : "clamp(20px, 3vh, 30px)",
+              padding: isMobile ? "6px 14px" : "8px 20px",
               backgroundColor: "#4285F4",
               color: "white",
               borderRadius: "4px",
               textDecoration: "none",
-              fontSize: "1rem",
+              fontSize: isMobile ? "0.9rem" : "1rem",
               fontWeight: 500,
               display: "inline-flex",
               alignItems: "center",
