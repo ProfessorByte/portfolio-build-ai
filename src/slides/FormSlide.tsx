@@ -127,6 +127,50 @@ const SubmitButton = styled(motion.button)`
   }
 `;
 
+const ButtonsContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: ${isMobile ? "column" : "row"};
+  gap: ${theme.spacing(1.5)};
+  width: 100%;
+  margin-top: ${theme.spacing(2)};
+`;
+
+const LinkButton = styled(motion.a)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${theme.spacing(0.75)};
+  background-color: ${theme.colors.elevation3};
+  color: ${theme.colors.onBackground};
+  border: 1px solid ${theme.colors.elevationBorder};
+  border-radius: ${theme.borderRadius.medium};
+  padding: ${isMobile ? theme.spacing(1.25) : theme.spacing(1.5)};
+  font-size: ${isMobile ? "0.9rem" : "1rem"};
+  font-weight: 600;
+  cursor: pointer;
+  transition: ${theme.transitions.default};
+  box-shadow: ${theme.shadows[1]};
+  text-decoration: none;
+  text-align: center;
+  flex: 1;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    box-shadow: ${theme.shadows[2]};
+    transform: translateY(-2px);
+    background-color: ${theme.colors.elevation4};
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: ${theme.shadows[1]};
+  }
+`;
+
 const Notification = styled(motion.div)`
   position: fixed;
   top: 10%;
@@ -281,7 +325,6 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 required
               />
             </FormGroup>
-
             <FormGroup variants={itemVariants}>
               <FormLabel>¿A qué te dedicas? 💼</FormLabel>
               <FormInput
@@ -293,7 +336,6 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 required
               />
             </FormGroup>
-
             <FormGroup variants={itemVariants}>
               <FormLabel>¿Cuáles son tus habilidades principales? 🚀</FormLabel>
               <FormTextarea
@@ -304,7 +346,6 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 required
               />
             </FormGroup>
-
             <FormGroup variants={itemVariants}>
               <FormLabel>¿Dónde te pueden encontrar? 🌐</FormLabel>
               <FormTextarea
@@ -314,8 +355,7 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 placeholder="Ej. LinkedIn: /mariadesign, Twitter: @mariauxui, Behance: mariadesigns"
                 required
               />
-            </FormGroup>
-
+            </FormGroup>{" "}
             <SubmitButton
               type="submit"
               variants={itemVariants}
@@ -324,6 +364,37 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
             >
               Generar prompt para mi portafolio ✨
             </SubmitButton>
+            <ButtonsContainer variants={itemVariants}>
+              {" "}
+              <LinkButton
+                href="https://ai.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <img
+                  src="/icons/ai-studio-icon.png"
+                  alt="AI Studio Icon"
+                  style={{ width: "24px", height: "24px", marginRight: "8px" }}
+                />
+                Google AI Studio
+              </LinkButton>
+              <LinkButton
+                href="https://studio.firebase.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <img
+                  src="/icons/firebase-studio-icon.png"
+                  alt="Firebase Studio Icon"
+                  style={{ width: "24px", height: "24px", marginRight: "8px" }}
+                />
+                Firebase Studio
+              </LinkButton>
+            </ButtonsContainer>
           </StyledForm>
 
           {showNotification && (
