@@ -7,6 +7,7 @@ import SWEBenchSlide from "./slides/SWEBenchSlide.tsx";
 import GeminiSlide from "./slides/GeminiSlide.tsx";
 import FirebaseStudioSlide from "./slides/FirebaseStudioSlide.tsx";
 import FormSlide from "./slides/FormSlide.tsx";
+import ThankYouSlide from "./slides/ThankYouSlide.tsx";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <GeminiSlide />
         <FirebaseStudioSlide />
         <FormSlide />
+        <ThankYouSlide />
       </SlideNavigation>
     </Layout>
   );
