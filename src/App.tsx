@@ -6,6 +6,7 @@ import WebDevArenaSlide from "./slides/WebDevArenaSlide.tsx";
 import SWEBenchSlide from "./slides/SWEBenchSlide.tsx";
 import GeminiSlide from "./slides/GeminiSlide.tsx";
 import FirebaseStudioSlide from "./slides/FirebaseStudioSlide.tsx";
+import FormSlide from "./slides/FormSlide.tsx";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <SWEBenchSlide />
         <GeminiSlide />
         <FirebaseStudioSlide />
+        <FormSlide />
       </SlideNavigation>
     </Layout>
   );
