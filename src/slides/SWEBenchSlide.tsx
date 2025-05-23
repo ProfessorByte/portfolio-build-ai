@@ -175,7 +175,8 @@ const SWEBenchSlide: React.FC = () => {
         }}
       >
         {" "}
-        <div          style={{
+        <div
+          style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -184,7 +185,9 @@ const SWEBenchSlide: React.FC = () => {
             gap: isMobile ? theme.spacing(2) : theme.spacing(3), // Mayor espaciado en desktop
             justifyContent: "center",
             height: "auto", // Ajuste para no forzar altura completa
-            paddingBottom: isMobile ? "clamp(60px, 12vh, 100px)" : "clamp(80px, 15vh, 130px)", // Más espacio para el footer en desktop
+            paddingBottom: isMobile
+              ? "clamp(20px, 5vh, 40px)"
+              : "clamp(80px, 15vh, 130px)", // Más espacio para el footer en desktop
             margin: "0 auto", // Centrar horizontalmente
           }}
         >
@@ -195,7 +198,8 @@ const SWEBenchSlide: React.FC = () => {
               opacity: 1,
               scale: 1,
               transition: { duration: 0.8, delay: 0.5 },
-            }}            style={{
+            }}
+            style={{
               width: isMobile || isTablet ? "600px" : "800px", // Mayor ancho en desktop
               maxWidth: isMobile ? "90%" : "95%", // Mayor ancho máximo en desktop
               height: "auto",
@@ -244,39 +248,42 @@ const SWEBenchSlide: React.FC = () => {
               }}
             />
           </motion.div>
-          {/* Texto descriptivo del benchmark DEBAJO de la imagen */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}            style={{
-              padding: isMobile ? theme.spacing(2) : theme.spacing(2.5),
-              borderRadius: theme.borderRadius.small,
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              backdropFilter: "blur(10px)",
-              boxShadow: theme.shadows[1],
-              border: `1px solid ${theme.colors.elevationBorder}`,
-              width: isMobile || isTablet ? "600px" : "800px", // Mayor ancho en desktop
-              maxWidth: isMobile ? "90%" : "95%", // Mayor ancho máximo en desktop
-              marginTop: isMobile ? theme.spacing(2) : theme.spacing(2.5), // Espacio entre imagen y texto
-            }}
-          >
-            <motion.p
+          {/* Texto descriptivo del benchmark SOLO en dispositivos desktop */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
               style={{
-                fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)", // Tamaño de texto adaptativo
-                textAlign: "center",
-                color: theme.colors.onBackground,
-                margin: 0,
-                fontWeight: 500,
-                letterSpacing: "0.01em",
-                textShadow: "0 1px 1px rgba(0, 0, 0, 0.3)",
-                lineHeight: 1.5,
+                padding: theme.spacing(2.5),
+                borderRadius: theme.borderRadius.small,
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                backdropFilter: "blur(10px)",
+                boxShadow: theme.shadows[1],
+                border: `1px solid ${theme.colors.elevationBorder}`,
+                width: isTablet ? "600px" : "800px", // Ancho según dispositivo
+                maxWidth: "95%", // Ancho máximo en desktop
+                marginTop: theme.spacing(2.5), // Espacio entre imagen y texto
               }}
             >
-              SWE-bench Verified es un benchmark que evalúa el rendimiento de
-              distintos modelos en tareas reales de ingeniería de software a un
-              nivel agéntico
-            </motion.p>
-          </motion.div>
+              <motion.p
+                style={{
+                  fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)", // Tamaño de texto adaptativo
+                  textAlign: "center",
+                  color: theme.colors.onBackground,
+                  margin: 0,
+                  fontWeight: 500,
+                  letterSpacing: "0.01em",
+                  textShadow: "0 1px 1px rgba(0, 0, 0, 0.3)",
+                  lineHeight: 1.5,
+                }}
+              >
+                SWE-bench Verified es un benchmark que evalúa el rendimiento de
+                distintos modelos en tareas reales de ingeniería de software a
+                un nivel agéntico
+              </motion.p>
+            </motion.div>
+          )}
         </div>
       </SlideContent>
     </SlideContainer>
