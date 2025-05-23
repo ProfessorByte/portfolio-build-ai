@@ -252,16 +252,16 @@ export const SlideProgress = styled(motion.div)`
   }
 `;
 
-export const ProgressDot = styled.div<{ active: boolean }>`
+export const ProgressDot = styled.div<{ $active: boolean }>`
   width: 8px;
   height: 8px;
   border-radius: ${theme.borderRadius.circle};
   background-color: ${(props) =>
-    props.active ? theme.colors.primary : theme.colors.elevation4};
+    props.$active ? theme.colors.primary : theme.colors.elevation4};
   transition: ${theme.transitions.fast};
   margin: 0 2px;
   box-shadow: ${(props) =>
-    props.active ? `0 0 8px ${theme.colors.primary}` : "none"};
+    props.$active ? `0 0 8px ${theme.colors.primary}` : "none"};
 
   &:hover {
     transform: scale(1.2);

@@ -144,8 +144,9 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
           justifyContent: "center",
         }}
       >
+        {" "}
         {Array.from({ length: slideCount }).map((_, index) => (
-          <ProgressDot key={index} active={index === currentIndex} />
+          <ProgressDot key={index} $active={index === currentIndex} />
         ))}
       </SlideProgress>
       {/* Global Footer que aparecerá en todas las diapositivas */}{" "}
