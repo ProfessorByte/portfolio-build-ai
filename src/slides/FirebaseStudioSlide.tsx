@@ -1,9 +1,4 @@
-import React from "react";
-import {
-  SlideContainer,
-  SlideTitle,
-  SlideContent,
-} from "../components/SlideComponents";
+import { SlideContainer, SlideContent } from "../components/SlideComponents";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
 import { isMobile } from "react-device-detect";
@@ -217,73 +212,53 @@ const FirebaseStudioSlide: React.FC = () => {
             overflow: "hidden",
           }}
         >
-          <SlideTitle
+          {" "}
+          <motion.div
             variants={titleVariants}
             initial="hidden"
             animate="visible"
             style={{
-              fontSize: isMobile ? "1.8rem" : "clamp(2rem, 5vw, 3.5rem)",
-              background: `linear-gradient(135deg, #FFA000 15%, #F57C00 40%, #FF6F00 65%, #FFCA28 85%)`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              marginBottom: isMobile ? "16px" : "clamp(16px, 4vh, 32px)",
-              textAlign: "center",
-              lineHeight: 1.2,
-              fontWeight: 700,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: isMobile ? "16px" : "clamp(20px, 5vh, 40px)",
+              width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
+              padding: "0 8px",
+              overflow: "visible",
             }}
           >
-            Firebase Studio
-          </SlideTitle>
-
-          {!isMobile && (
-            <motion.div
+            <div
               style={{
+                width: "100%",
+                maxWidth: isMobile ? "240px" : "320px",
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "center",
-                marginBottom: "clamp(20px, 5vh, 40px)",
+                padding: isMobile ? "8px 0" : "12px 0",
               }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <motion.div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginRight: "16px",
-                  background: "rgba(20, 20, 20, 0.6)",
-                  borderRadius: "8px",
-                  padding: "8px 16px",
-                  border: "1px solid rgba(255, 160, 0, 0.3)",
-                }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-              >
-                <FirebaseStudioLogo width={180} />
-              </motion.div>
-              <motion.h2
-                style={{
-                  fontSize: "clamp(1.2rem, 3vw, 1.8rem)",
-                  color: theme.colors.onBackground,
-                  margin: 0,
-                  padding: 0,
-                  fontWeight: 400,
-                  textAlign: "center",
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.9 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                Desarrollo full-stack con IA
-                <br />
-                por Google
-              </motion.h2>
-            </motion.div>
+              <FirebaseStudioLogo width={isMobile ? 240 : 320} />
+            </div>
+          </motion.div>{" "}
+          {!isMobile && (
+            <motion.h2
+              style={{
+                fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)",
+                color: theme.colors.onBackground,
+                margin: 0,
+                padding: 0,
+                fontWeight: 400,
+                textAlign: "center",
+                marginBottom: "clamp(10px, 2vh, 20px)",
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.9 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              Desarrollo full-stack con Gemini y Firebase Studio
+            </motion.h2>
           )}
-
           <motion.div
             style={{
               display: "grid",
@@ -367,10 +342,9 @@ const FirebaseStudioSlide: React.FC = () => {
               </motion.div>
             ))}
           </motion.div>
-
           {/* Firebase styled link */}
           <motion.a
-            href="https://firebase.google.com/products/studio"
+            href="https://firebase.studio"
             target="_blank"
             rel="noopener noreferrer"
             style={{

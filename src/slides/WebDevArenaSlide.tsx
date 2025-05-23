@@ -267,7 +267,7 @@ const WebDevArenaSlide: React.FC = () => {
 
             {/* Iframe con WebDev Arena */}
             <iframe
-              src="https://beta.lmarena.ai/leaderboard/webdev"
+              src="https://web.lmarena.ai/leaderboard"
               title="WebDev Arena Leaderboard"
               style={{
                 width: "100%",

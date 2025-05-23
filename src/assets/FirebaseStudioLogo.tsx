@@ -9,7 +9,6 @@ export const FirebaseStudioLogo = ({
   ...props
 }: FirebaseStudioIconProps) => {
   const aspectRatio = 322 / 65;
-
   const height = Math.round(width / aspectRatio);
 
   return (
@@ -17,8 +16,13 @@ export const FirebaseStudioLogo = ({
       xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
+      viewBox="0 0 322 65"
       fill="none"
-      className="max-md:m-2.5 w-40 md:w-48 lg:w-[211px] h-fit"
+      style={{
+        maxWidth: "100%",
+        height: "auto",
+        ...props.style,
+      }}
       {...props}
     >
       <g clipPath="url(#a)">

@@ -79,8 +79,7 @@ const geminiFeatures = [
   },
   {
     title: "Líder en Codificación",
-    description:
-      "Rendimiento superior en benchmarks como WebDev Arena y LMArena",
+    description: "Rendimiento superior en benchmarks como WebDev Arena",
     icon: "🏆",
     color: "#34A853", // Google Green
   },
