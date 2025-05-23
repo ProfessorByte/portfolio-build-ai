@@ -8,6 +8,14 @@ import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import {
+  PersonIcon,
+  BriefcaseIcon,
+  RocketIcon,
+  GlobeIcon,
+  SparkleIcon,
+  CheckIcon,
+} from "../components/Icons";
 
 // Animation variants
 const containerVariants = {
@@ -186,12 +194,6 @@ const Notification = styled(motion.div)`
   align-items: center;
   gap: ${theme.spacing(1)};
   font-weight: 500;
-
-  &::before {
-    content: "✓";
-    color: ${theme.colors.accent};
-    font-size: 1.2rem;
-  }
 `;
 
 // Form component
@@ -312,10 +314,17 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
           >
             ¡Personaliza tu portafolio con IA!
           </SlideTitle>
-
           <StyledForm variants={containerVariants} onSubmit={handleSubmit}>
+            {" "}
             <FormGroup variants={itemVariants}>
-              <FormLabel>¿Cómo te llamas? 😊</FormLabel>
+              <FormLabel>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <PersonIcon />
+                  ¿Cómo te llamas?
+                </span>
+              </FormLabel>
               <FormInput
                 type="text"
                 name="fullName"
@@ -324,9 +333,16 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 placeholder="Ej. María Rodríguez"
                 required
               />
-            </FormGroup>
+            </FormGroup>{" "}
             <FormGroup variants={itemVariants}>
-              <FormLabel>¿A qué te dedicas? 💼</FormLabel>
+              <FormLabel>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <BriefcaseIcon />
+                  ¿A qué te dedicas?
+                </span>
+              </FormLabel>
               <FormInput
                 type="text"
                 name="profession"
@@ -335,9 +351,16 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 placeholder="Ej. Diseñadora UX/UI"
                 required
               />
-            </FormGroup>
+            </FormGroup>{" "}
             <FormGroup variants={itemVariants}>
-              <FormLabel>¿Cuáles son tus habilidades principales? 🚀</FormLabel>
+              <FormLabel>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <RocketIcon />
+                  ¿Cuáles son tus habilidades principales?
+                </span>
+              </FormLabel>
               <FormTextarea
                 name="skills"
                 value={formData.skills}
@@ -345,9 +368,16 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 placeholder="Ej. Diseño de interfaces, prototipado, investigación de usuarios, HTML/CSS"
                 required
               />
-            </FormGroup>
+            </FormGroup>{" "}
             <FormGroup variants={itemVariants}>
-              <FormLabel>¿Dónde te pueden encontrar? 🌐</FormLabel>
+              <FormLabel>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <GlobeIcon />
+                  ¿Dónde te pueden encontrar?
+                </span>
+              </FormLabel>
               <FormTextarea
                 name="socialMedia"
                 value={formData.socialMedia}
@@ -362,7 +392,18 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              Generar prompt para mi portafolio ✨
+              <span
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  width: "100%",
+                }}
+              >
+                Generar y copiar prompt para mi portafolio
+                <SparkleIcon />
+              </span>
             </SubmitButton>
             <ButtonsContainer variants={itemVariants}>
               {" "}
@@ -395,15 +436,19 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 Firebase Studio
               </LinkButton>
             </ButtonsContainer>
-          </StyledForm>
-
+          </StyledForm>{" "}
           {showNotification && (
             <Notification
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
-              ¡Prompt copiado al portapapeles! Pégalo en tu IA favorita.
+              <span
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
+                <CheckIcon />
+                ¡Prompt copiado al portapapeles! Pégalo en tu IA favorita.
+              </span>
             </Notification>
           )}
         </motion.div>
