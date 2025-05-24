@@ -8,6 +8,7 @@ import GeminiSlide from "./slides/GeminiSlide.tsx";
 import FirebaseStudioSlide from "./slides/FirebaseStudioSlide.tsx";
 import FormSlide from "./slides/FormSlide.tsx";
 import ThankYouSlide from "./slides/ThankYouSlide.tsx";
+import SocialMediaSlide from "./slides/SocialMediaSlide.tsx";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <FirebaseStudioSlide />
         <FormSlide />
         <ThankYouSlide />
+        <SocialMediaSlide />
       </SlideNavigation>
     </Layout>
   );
