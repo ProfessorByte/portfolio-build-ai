@@ -229,16 +229,36 @@ const GeminiSlide: React.FC = () => {
             animate="visible"
             style={{
               fontSize: isMobile ? "1.8rem" : "clamp(2rem, 5vw, 3.5rem)",
-              background: `linear-gradient(135deg, #4285F4 15%, #34A853 40%, #FBBC05 65%, #EA4335 85%)`,
+              background: `linear-gradient(135deg, #4285F4 20%, #34A853 45%, #FBBC05 70%, #EA4335 95%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               marginBottom: isMobile ? "16px" : "clamp(16px, 4vh, 32px)",
               textAlign: "center",
               lineHeight: 1.2,
-              fontWeight: 700,
+              fontWeight: 800,
+              position: "relative",
+              paddingBottom: "10px", // Espacio para la línea
+              zIndex: 10,
+              filter: "brightness(1.2) contrast(1.1)",
+              textShadow: `0 0 15px #4285F480`, // Sombra con el azul de Google
             }}
           >
             Gemini 2.5 Pro I/O Edition
+            <motion.div
+              initial={{ width: "0%" }}
+              animate={{ width: "70%" }} // Ajusta el ancho según prefieras
+              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: "15%", // Centra la línea
+                height: "4px",
+                background: `linear-gradient(90deg, #4285F4, #34A853, #FBBC05)`, // Gradiente para la línea
+                borderRadius: "2px",
+                boxShadow: `0 0 10px #4285F4, 0 0 20px #4285F440`,
+                filter: "brightness(1.1)",
+              }}
+            />
           </SlideTitle>
           {!isMobile && (
             <motion.div
