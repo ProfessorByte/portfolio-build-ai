@@ -1,5 +1,9 @@
 import React from "react";
-import { SlideContainer, SlideContent } from "../components/SlideComponents";
+import {
+  SlideContainer,
+  SlideContent,
+  SlideTitle,
+} from "../components/SlideComponents";
 import { motion } from "framer-motion";
 import { theme } from "../styles/theme";
 import styled from "styled-components";
@@ -175,61 +179,111 @@ const KarpathyQuoteSlide: React.FC = () => {
       />
 
       <SlideContent>
-        <QuoteContainer
-          variants={contentVariants}
-          initial="hidden"
-          animate="visible"
+        <motion.div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            position: "relative",
+            zIndex: 5,
+          }}
         >
-          <ProfileSection>
-            <ProfileImage
-              src="/img/AndrejKarpathy.jpg"
-              alt="Andrej Karpathy"
-              variants={imageVariants}
-              initial="hidden"
-              animate="visible"
+          <SlideTitle
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+            style={{
+              fontSize: isMobile ? "2rem" : "clamp(2.2rem, 5vw, 3.5rem)",
+              marginBottom: "clamp(16px, 4vh, 32px)",
+              textAlign: "center",
+              background: `linear-gradient(135deg, ${theme.colors.primary} 15%, ${theme.colors.secondary} 50%, ${theme.colors.accent} 85%)`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              position: "relative",
+              padding: "0 0 10px 0",
+              zIndex: 10,
+              fontWeight: 800,
+              filter: "brightness(1.2) contrast(1.1)",
+              textShadow: `0 0 15px ${theme.colors.primary}80`,
+            }}
+          >
+            Vibe Coding
+            <motion.div
+              initial={{ width: "0%" }}
+              animate={{ width: "80%" }}
+              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: "10%",
+                height: "4px",
+                background: `linear-gradient(90deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
+                borderRadius: "2px",
+                boxShadow: `0 0 10px ${theme.colors.primary}, 0 0 20px ${theme.colors.primary}40`,
+                filter: "brightness(1.1)",
+              }}
             />
-            <PersonInfo>
-              <Name>Andrej Karpathy</Name>
-              <Role>Cofundador de OpenAI</Role>
-            </PersonInfo>
-          </ProfileSection>
+          </SlideTitle>
 
-          <QuoteSection
-            variants={quoteVariants}
+          <QuoteContainer
+            variants={contentVariants}
             initial="hidden"
             animate="visible"
           >
-            <QuoteText>
-              <p>
-                Hay un nuevo tipo de programación que yo llamo "programación por
-                vibra", donde simplemente te dejas llevar por el flow, abrazás
-                los exponenciales, y te olvidás de que el código siquiera
-                existe. Es posible porque los modelos de lenguaje (tipo Cursor
-                Composer con Sonnet) ya están demasiado rotos. Encima, yo le
-                hablo al Composer con SuperWhisper, así que casi ni toco el
-                teclado. Le pido cosas ridículamente vagas como "disminuí a la
-                mitad el padding de la barra lateral", porque me da pereza
-                buscarlo yo mismo. Siempre le doy "Aceptar todo", ya ni leo los
-                diffs.
-              </p>
-              <p>
-                Cuando me tira errores, los copio tal cual y se los pego sin
-                decir nada... y usualmente se arreglan solos. El código empieza
-                a crecer y se vuelve más allá de mi comprensión inmediata,
-                tendría que sentarme a leerlo con calma para entender algo. A
-                veces los modelos no pueden arreglar un bug, así que lo rodeo
-                con un workaround o empiezo a pedir cambios aleatorios hasta que
-                desaparece. Para proyectos de fin de semana que no importan
-                mucho, no está nada mal... pero igual es bastante gracioso.
-              </p>
-              <p>
-                Estoy construyendo un proyecto o una app web, pero no es
-                realmente "programar". Solo veo cosas, digo cosas, corro cosas,
-                copio y pego cosas... y más o menos funciona.
-              </p>
-            </QuoteText>
-          </QuoteSection>
-        </QuoteContainer>
+            <ProfileSection>
+              <ProfileImage
+                src="/img/AndrejKarpathy.jpg"
+                alt="Andrej Karpathy"
+                variants={imageVariants}
+                initial="hidden"
+                animate="visible"
+              />
+              <PersonInfo>
+                <Name>Andrej Karpathy</Name>
+                <Role>Cofundador de OpenAI</Role>
+              </PersonInfo>
+            </ProfileSection>
+
+            <QuoteSection
+              variants={quoteVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <QuoteText>
+                <p>
+                  Hay un nuevo tipo de programación que yo llamo "programación
+                  por vibra", donde simplemente te dejas llevar por el flow,
+                  abrazás los exponenciales, y te olvidás de que el código
+                  siquiera existe. Es posible porque los modelos de lenguaje
+                  (tipo Cursor Composer con Sonnet) ya están demasiado rotos.
+                  Encima, yo le hablo al Composer con SuperWhisper, así que casi
+                  ni toco el teclado. Le pido cosas ridículamente vagas como
+                  "disminuí a la mitad el padding de la barra lateral", porque
+                  me da pereza buscarlo yo mismo. Siempre le doy "Aceptar todo",
+                  ya ni leo los diffs.
+                </p>
+                <p>
+                  Cuando me tira errores, los copio tal cual y se los pego sin
+                  decir nada... y usualmente se arreglan solos. El código
+                  empieza a crecer y se vuelve más allá de mi comprensión
+                  inmediata, tendría que sentarme a leerlo con calma para
+                  entender algo. A veces los modelos no pueden arreglar un bug,
+                  así que lo rodeo con un workaround o empiezo a pedir cambios
+                  aleatorios hasta que desaparece. Para proyectos de fin de
+                  semana que no importan mucho, no está nada mal... pero igual
+                  es bastante gracioso.
+                </p>
+                <p>
+                  Estoy construyendo un proyecto o una app web, pero no es
+                  realmente "programar". Solo veo cosas, digo cosas, corro
+                  cosas, copio y pego cosas... y más o menos funciona.
+                </p>
+              </QuoteText>
+            </QuoteSection>
+          </QuoteContainer>
+        </motion.div>
       </SlideContent>
     </SlideContainer>
   );
