@@ -114,24 +114,10 @@ La aplicación soporta gestos táctiles para la navegación en dispositivos móv
 - Deslizar hacia la izquierda: Avanzar a la siguiente diapositiva
 - Deslizar hacia la derecha: Retroceder a la diapositiva anterior
 
-## Contribución
-
-Si deseas contribuir a este proyecto, por favor:
-
-1. Haz un fork del repositorio
-2. Crea una rama para tu funcionalidad (`git checkout -b feature/nueva-funcionalidad`)
-3. Realiza tus cambios y haz commit (`git commit -m 'Añade nueva funcionalidad'`)
-4. Sube tus cambios a tu fork (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
-
-## Licencia
-
-Este proyecto está bajo licencia privada.
-
 ## Contacto
 
-Para más información, contáctame a través de [tu información de contacto].
+Para más información, contáctame a través de Instagram [@pabloux_darkmind](https://www.instagram.com/pabloux_darkmind).
 
 ---
 
-Desarrollado con ❤️ por [Tu Nombre/Organización]
+Desarrollado con ❤️ por Pabloux Darkmind
