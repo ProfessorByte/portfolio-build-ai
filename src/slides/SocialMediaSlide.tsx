@@ -64,7 +64,7 @@ const ThankYouContainer = styled(motion.div)`
 `;
 
 const GlowingTitle = styled(motion.h1)`
-  font-size: ${isMobile ? "2.5rem" : "4rem"};
+  font-size: ${isMobile ? "2rem" : "4rem"};
   font-weight: 700;
   background: linear-gradient(
     90deg,
@@ -78,7 +78,7 @@ const GlowingTitle = styled(motion.h1)`
   background-clip: text;
   animation: shine 3s linear infinite;
   text-shadow: 0 0 30px rgba(138, 180, 248, 0.4);
-  margin-bottom: ${theme.spacing(4)};
+  margin-bottom: ${theme.spacing(isMobile ? 2 : 4)};
 
   @keyframes shine {
     to {
@@ -87,27 +87,37 @@ const GlowingTitle = styled(motion.h1)`
   }
 
   @media (max-height: 600px) {
-    font-size: ${isMobile ? "2rem" : "3rem"};
-    margin-bottom: ${theme.spacing(2)};
+    font-size: ${isMobile ? "1.8rem" : "3rem"};
+    margin-bottom: ${theme.spacing(1.5)};
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+    margin-bottom: ${theme.spacing(1.5)};
   }
 `;
 
 const SocialMediaGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: ${isMobile ? "1fr" : "repeat(3, 1fr)"};
-  gap: ${theme.spacing(2)};
+  gap: ${isMobile ? theme.spacing(1.5) : theme.spacing(2)};
   width: 100%;
-  max-width: 900px;
+  max-width: ${isMobile ? "90%" : "900px"};
   margin: 0 auto;
 
   @media (max-height: 700px) {
-    gap: ${theme.spacing(1.5)};
+    gap: ${theme.spacing(1)};
+  }
+
+  @media (max-width: 480px) {
+    gap: ${theme.spacing(1)};
+    max-width: 95%;
   }
 `;
 
 const SocialIcon = styled.div`
-  width: ${isMobile ? "40px" : "60px"};
-  height: ${isMobile ? "40px" : "60px"};
+  width: ${isMobile ? "32px" : "60px"};
+  height: ${isMobile ? "32px" : "60px"};
   margin-bottom: ${isMobile ? "0" : theme.spacing(1.5)};
   margin-right: ${isMobile ? theme.spacing(1.5) : "0"};
   display: flex;
@@ -120,6 +130,11 @@ const SocialIcon = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  @media (max-width: 480px) {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 const SocialMediaCard = styled(motion.a)`
@@ -127,7 +142,7 @@ const SocialMediaCard = styled(motion.a)`
   flex-direction: ${isMobile ? "row" : "column"};
   align-items: center;
   justify-content: center;
-  padding: ${theme.spacing(3)};
+  padding: ${isMobile ? theme.spacing(2) : theme.spacing(3)};
   background: rgba(30, 30, 30, 0.7);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -165,21 +180,50 @@ const SocialMediaCard = styled(motion.a)`
   }
 
   @media (max-height: 700px) {
-    padding: ${theme.spacing(2)};
+    padding: ${theme.spacing(1.5)};
+  }
+
+  @media (max-width: 480px) {
+    padding: ${theme.spacing(1.5)};
+  }
+
+  & > div {
+    ${isMobile &&
+    `
+      flex: 1;
+      min-width: 0;
+    `}
   }
 `;
 
 const SocialName = styled.h3`
-  font-size: ${isMobile ? "1.2rem" : "1.5rem"};
+  font-size: ${isMobile ? "1rem" : "1.5rem"};
   font-weight: 600;
   margin: 0;
   margin-bottom: ${theme.spacing(0.5)};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    margin-bottom: ${theme.spacing(0.3)};
+  }
 `;
 
 const SocialHandle = styled.p`
-  font-size: ${isMobile ? "0.9rem" : "1.1rem"};
+  font-size: ${isMobile ? "0.8rem" : "1.1rem"};
   opacity: 0.8;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const BackgroundGlow = styled.div`
