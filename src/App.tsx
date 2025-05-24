@@ -5,6 +5,7 @@ import AIModelsSlide from "./slides/AIModelsSlide.tsx";
 import WebDevArenaSlide from "./slides/WebDevArenaSlide.tsx";
 import SWEBenchSlide from "./slides/SWEBenchSlide.tsx";
 import GeminiSlide from "./slides/GeminiSlide.tsx";
+import KarpathyQuoteSlide from "./slides/KarpathyQuoteSlide.tsx";
 import FirebaseStudioSlide from "./slides/FirebaseStudioSlide.tsx";
 import FormSlide from "./slides/FormSlide.tsx";
 import ThankYouSlide from "./slides/ThankYouSlide.tsx";
@@ -20,6 +21,7 @@ function App() {
         <WebDevArenaSlide />
         <SWEBenchSlide />
         <GeminiSlide />
+        <KarpathyQuoteSlide />
         <FirebaseStudioSlide />
         <FormSlide />
         <ThankYouSlide />
