@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   SlideContainer,
   SlideTitle,
@@ -15,6 +15,7 @@ import {
   GlobeIcon,
   SparkleIcon,
   CheckIcon,
+  TrashIcon,
 } from "../components/Icons";
 
 // Animation variants
@@ -135,12 +136,55 @@ const SubmitButton = styled(motion.button)`
   }
 `;
 
+const ClearButton = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${theme.spacing(0.75)};
+  background-color: transparent;
+  color: ${theme.colors.error || "#ff5252"};
+  border: 1px solid ${theme.colors.error || "#ff5252"};
+  border-radius: ${theme.borderRadius.medium};
+  padding: ${isMobile ? theme.spacing(1.25) : theme.spacing(1.5)};
+  font-size: ${isMobile ? "0.9rem" : "1rem"};
+  font-weight: 600;
+  cursor: pointer;
+  transition: ${theme.transitions.default};
+  box-shadow: ${theme.shadows[1]};
+  text-align: center;
+  flex: 1;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background-color: ${theme.colors.error || "#ff5252"}20;
+    box-shadow: ${theme.shadows[2]};
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: ${theme.shadows[1]};
+  }
+`;
+
 const ButtonsContainer = styled(motion.div)`
   display: flex;
   flex-direction: ${isMobile ? "column" : "row"};
   gap: ${theme.spacing(1.5)};
   width: 100%;
   margin-top: ${theme.spacing(2)};
+
+  /* En móvil, el botón de limpiar va arriba */
+  @media (max-width: 768px) {
+    ${ClearButton} {
+      order: -1;
+      margin-bottom: ${theme.spacing(1)};
+    }
+  }
 `;
 
 const LinkButton = styled(motion.a)`
@@ -198,6 +242,8 @@ const Notification = styled(motion.div)`
 
 // Form component
 const FormSlide: React.FC = () => {
+  const STORAGE_KEY = "portfolioFormData";
+
   const [formData, setFormData] = useState({
     fullName: "",
     profession: "",
@@ -207,11 +253,40 @@ const FormSlide: React.FC = () => {
 
   const [showNotification, setShowNotification] = useState(false);
 
+  // Load data from localStorage on component mount
+  useEffect(() => {
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData);
+        setFormData(parsedData);
+      } catch (error) {
+        console.error("Error loading form data from localStorage:", error);
+      }
+    }
+  }, []);
+
+  // Save to localStorage whenever formData changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+  }, [formData]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleClearForm = () => {
+    const emptyForm = {
+      fullName: "",
+      profession: "",
+      skills: "",
+      socialMedia: "",
+    };
+    setFormData(emptyForm);
+    localStorage.removeItem(STORAGE_KEY);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -404,9 +479,17 @@ Recuerda que debes hacerlo completamente en Vite+React+Tailwind CSS, y que el c�
                 Generar y copiar prompt para mi portafolio
                 <SparkleIcon />
               </span>
-            </SubmitButton>
+            </SubmitButton>{" "}
             <ButtonsContainer variants={itemVariants}>
-              {" "}
+              <ClearButton
+                type="button"
+                onClick={handleClearForm}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <TrashIcon />
+                Limpiar formulario
+              </ClearButton>
               <LinkButton
                 href="https://ai.dev"
                 target="_blank"
