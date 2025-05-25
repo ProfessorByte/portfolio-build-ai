@@ -251,24 +251,72 @@ const FormSlide: React.FC = () => {
     socialMedia: "",
   });
 
-  const [showNotification, setShowNotification] = useState(false);
-
-  // Load data from localStorage on component mount
+  const [showNotification, setShowNotification] = useState(false); // Load data from localStorage on component mount
   useEffect(() => {
-    const savedData = localStorage.getItem(STORAGE_KEY);
-    if (savedData) {
-      try {
-        const parsedData = JSON.parse(savedData);
-        setFormData(parsedData);
-      } catch (error) {
-        console.error("Error loading form data from localStorage:", error);
+    const loadFromStorage = () => {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        try {
+          const parsedData = JSON.parse(savedData);
+          setFormData(parsedData);
+        } catch (error) {
+          console.error("Error loading form data from localStorage:", error);
+        }
       }
-    }
+    };
+
+    // Load data on mount
+    loadFromStorage();
+
+    // Also load data when the window regains focus (user might have changed data in another tab)
+    const handleFocus = () => {
+      loadFromStorage();
+    };
+
+    // Add focus event listener to sync data when returning to the tab/window
+    window.addEventListener("focus", handleFocus);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+    };
   }, []);
 
-  // Save to localStorage whenever formData changes
+  // Additional effect to sync data when component becomes visible again
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+          try {
+            const parsedData = JSON.parse(savedData);
+            // Only update if the data is different from current state
+            if (JSON.stringify(parsedData) !== JSON.stringify(formData)) {
+              setFormData(parsedData);
+            }
+          } catch (error) {
+            console.error("Error syncing form data:", error);
+          }
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [formData]);
+
+  // Save to localStorage whenever formData changes (but avoid saving empty initial state)
+  useEffect(() => {
+    // Only save if there's actual data (not the initial empty state)
+    const hasData = Object.values(formData).some(
+      (value) => value.trim() !== ""
+    );
+    if (hasData) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    }
   }, [formData]);
 
   const handleChange = (
