@@ -76,8 +76,7 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
       setDirection(-1);
       setCurrentIndex((prevIndex) => prevIndex - 1);
     }
-  }, [currentIndex]);
-  // Handle keyboard navigation
+  }, [currentIndex]); // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Check if the user is typing in an input field or textarea
@@ -90,6 +89,17 @@ export const SlideNavigation: React.FC<SlideNavigationProps> = ({
 
       // If spacebar is pressed and user is in an input field, don't navigate
       if (e.key === " " && isInputElement) {
+        return;
+      }
+
+      // If arrow keys are pressed and user is in an input field, don't navigate
+      if (
+        (e.key === "ArrowRight" ||
+          e.key === "ArrowDown" ||
+          e.key === "ArrowLeft" ||
+          e.key === "ArrowUp") &&
+        isInputElement
+      ) {
         return;
       }
 
